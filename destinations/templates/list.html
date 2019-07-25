@@ -3,14 +3,29 @@
 {% block title %}List{% endblock title %}
 
 {% block content %}
-<br>
-<div class="row">
-  {% for destination in destinations %}
-  <a href="{% url 'destination-detail' destination.id %}">
-    <img src="{{destination.pretty_picture.url}}" />
-    <p>{{destination.name}}</p>
-    <p>{{destination.activities}}</p>
-  </a>
-  {% endfor %}
-</div>
+  <div class="card mt-5 mb-5">
+    <div class="row mt-5 mb-5">
+      {% for destination in destinations %}
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+          <div class="col-10">
+            <a href="{% url 'destination-detail' destination.id %}">
+              <img src="{{destination.pretty_picture.url}}" class="card-img img-thumbnail w-100"  style="width: 18rem; height: 10rem;" >
+            </a>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <a href="{% url 'destination-detail' destination.id %}">
+                <h5 class="card-title">{{destination.name}}</h5>
+              </a>
+              <p class="card-text">{{destination.activities}}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <a href="{% url 'destination-create' %}" class="nav-link  ">
+        <button  class="btn btn-secondary mb-5 btn-lg btn-block">Add a destination</button>
+    </a>
+    
+  </div>
 {% endblock content %}
